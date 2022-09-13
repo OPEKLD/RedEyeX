@@ -13,6 +13,7 @@ void movePlayer(UINT8 x, UINT8 y)
 void setUpPlayer(UINT8 x, UINT8 y, UINT8 width, UINT8 height)
 {
     set_sprite_data(0, 4, n1);
+    set_sprite_data(4, 5, bullet);
     
     player.x = x;
     player.y = y;
@@ -31,3 +32,36 @@ void setUpPlayer(UINT8 x, UINT8 y, UINT8 width, UINT8 height)
 
     movePlayer(0, 0);
 }
+
+void fire()
+{
+    if (laserIndex <= 14)
+    {
+        
+        set_sprite_tile(laserIndex + 1, 4);
+        move_sprite(laserIndex, player.x, player.y);
+        laserIndex++;
+        laserXs[laserIndex - 4] = player.x;
+        laserYs[laserIndex - 4] = player.y;
+        initXs[laserIndex - 4] = player.x;
+        laserExists = 1;
+    }
+    
+    
+}
+
+void updateLaser()
+{
+    UINT8 i = 14;
+
+    for (i = laserIndex; i >= 4; i--)
+    {
+        laserXs[i - 4] += 1;
+        move_sprite(i, laserXs[i - 4], laserYs[i - 4]);
+        if (laserXs[i - 4] >= initXs[i - 4] + 150)
+        {
+            
+        }
+    }
+}
+

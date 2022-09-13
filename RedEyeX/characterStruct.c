@@ -8,3 +8,9 @@ struct GameCharacter {
 	UINT8 width;
 	UINT8 height;
 };
+
+struct laserBeam {
+	UBYTE spritids[1];
+	UINT8 x;
+	UINT8 y;
+};
